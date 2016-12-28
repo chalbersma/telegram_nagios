@@ -6,17 +6,8 @@
 installdir="/opt/telegram_nagios"
 mkdir -p ${installdir}
 PIPREQPKGS="python3 twx"
-pushd ${installdir}
-rm -rf venv
-virtualenv --no-site-packages -p python3 ${installdir}
-source ${installdir}/activate
-for pippkg in ${PIPREQPKGS} ; do
-	pip install ${pippkg}
-done
-popd
+pip install twx
 ```
-
-	* If running CentOS 7 you may need to upgrade virtualenv (`pip install --upgrade virtualenv`).
 
 ## Usage
 
