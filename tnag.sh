@@ -38,7 +38,7 @@ help(){
 }
 
 
-while getopts "t:o:c:n:s:m:a:b:d:p:Dh" ; do
+while getopts "t:o:c:n:s:m:a:b:d:p:Dh" OPTIONS ; do
 	case $OPTIONS in
 		t) token=${OPTARG} ;;
 		o) object_type=${OPTARG} ;;
