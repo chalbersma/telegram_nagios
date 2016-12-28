@@ -62,7 +62,7 @@ if [[ -z ${token} ]] ; then
 	echo -e "Error: No Token Given"
 	exit 1
 else
-	python_arg_string=${python_arg_string}+" -t \"${token}\" "
+	python_arg_string="${python_arg_string} -t \"${token}\" "
 fi
 
 if [[ -z ${object_type} ]] ; then
@@ -70,7 +70,7 @@ if [[ -z ${object_type} ]] ; then
 	echo -e "Error: Object Type"
 	exit 1
 else
-	python_arg_string=${python_arg_string}+" -o \"${object_type}\" "
+	python_arg_string="${python_arg_string} -o \"${object_type}\" "
 fi
 
 if [[ -z ${telegram_contact} ]] ; then
@@ -78,7 +78,7 @@ if [[ -z ${telegram_contact} ]] ; then
 	echo -e "Error: No Telegram Contact Given"
 	exit 1
 else
-	python_arg_string=${python_arg_string}+" --contact \"${telegram_contact}\" "
+	python_arg_string="${python_arg_string} --contact \"${telegram_contact}\" "
 fi
 
 if [[ -z ${notification_type} ]] ; then
@@ -86,7 +86,7 @@ if [[ -z ${notification_type} ]] ; then
 	echo -e "Error: No notification type given"
 	exit 1
 else
-	python_arg_string=${python_arg_string}+" --notificationtype \"${notification_type}\" "
+	python_arg_string="${python_arg_string} --notificationtype \"${notification_type}\" "
 fi
 
 if [[ -z ${host_state} ]] ; then
@@ -95,7 +95,7 @@ if [[ -z ${host_state} ]] ; then
 	#exit 1
 	true
 else
-	python_arg_string=${python_arg_string}+" --hoststate \"${host_state}\" "
+	python_arg_string="${python_arg_string} --hoststate \"${host_state}\" "
 fi
 
 if [[ -z ${host_name} ]] ; then
@@ -103,7 +103,7 @@ if [[ -z ${host_name} ]] ; then
 	echo -e "Error: No host name given"
 	exit 1
 else
-	python_arg_string=${python_arg_string}+" --hostname \"${host_name}\" "
+	python_arg_string="${python_arg_string} --hostname \"${host_name}\" "
 fi
 
 if [[ -z ${host_address} ]] ; then
@@ -112,7 +112,7 @@ if [[ -z ${host_address} ]] ; then
 	#exit 1
 	true
 else
-	python_arg_string=${python_arg_string}+" --hostaddress \"${host_address}\" "
+	python_arg_string="${python_arg_string} --hostaddress \"${host_address}\" "
 fi
 
 if [[ -z ${service_state} ]] ; then
@@ -121,7 +121,7 @@ if [[ -z ${service_state} ]] ; then
 	#exit 1
 	true
 else
-	python_arg_string=${python_arg_string}+" --servicestate \"${service_state}\" "
+	python_arg_string="${python_arg_string} --servicestate \"${service_state}\" "
 fi
 
 if [[ -z ${service_description} ]] ; then
@@ -130,7 +130,7 @@ if [[ -z ${service_description} ]] ; then
 	#exit 1
 	true
 else
-	python_arg_string=${python_arg_string}+" --servicedesc \"${service_description}\" "
+	python_arg_string="${python_arg_string} --servicedesc \"${service_description}\" "
 fi
 
 if [[ -z ${output} ]] ; then
@@ -138,7 +138,7 @@ if [[ -z ${output} ]] ; then
 	echo -e "Error: No output given"
 	exit 1
 else
-	python_arg_string=${python_arg_string}+" --output \"${output}\" "
+	python_arg_string="${python_arg_string} --output \"${output}\" "
 fi
 
 RUN_LOC="/opt/telegram_nagios"

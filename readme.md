@@ -4,9 +4,15 @@
 
 ```
 installdir="/opt/telegram_nagios"
-mkdir -p ${installdir}
-PIPREQPKGS="python3 twx"
-pip install twx
+pushd ${installdir}
+rm -rf venv
+PIPREQPKGS="twx"
+virtualenv --no-site-packages -p python3 ${installdir}
+source ./bin/activate
+for pippkg in ${PIPREQPKGS} ; do
+	pip install ${pippkg}
+done
+popd
 ```
 
 ## Usage
