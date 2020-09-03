@@ -154,7 +154,7 @@ else
   if [[ -z ${virtualenv_bin} ]] ; then
     # Install pip3 Debian Flavors Only
     apt-get update &> /dev/null
-    apt-get --assume-yes install python3-virtualenv
+    apt-get --assume-yes install python-virtualenv
   fi
 
   ${virtualenv_env} -p python3 ${RUN_LOC}
