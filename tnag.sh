@@ -155,9 +155,10 @@ else
     # Install pip3 Debian Flavors Only
     apt-get update &> /dev/null
     apt-get --assume-yes install python-virtualenv
+    virtualenv_bin=$(which virtualenv)
   fi
 
-  ${virtualenv_env} -p python3 ${RUN_LOC}
+  ${virtualenv_bin} -p python3 ${RUN_LOC}
 
 
   pushd ${RUN_LOC} &> /dev/null
