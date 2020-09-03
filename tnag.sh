@@ -147,39 +147,38 @@ RUN_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 if [[ -x ${RUN_LOC}/bin/activate ]] ; then
   # We're okay virtualenv is setup
   true
+  SYS_ONLY="false"
 else
+  SYS_ONLY="true"
   # Setup Virtual Env
-  virtualenv_bin=$(which virtualenv)
+  pip3=$(which pip3)
 
   if [[ -z ${virtualenv_bin} ]] ; then
     # Install pip3 Debian Flavors Only
     apt-get update &> /dev/null
-    apt-get --assume-yes install python-virtualenv
-    virtualenv_bin=$(which virtualenv)
+    apt-get --assume-yes install python3-pip
+    pip3=$(which pip3)
   fi
 
-  ${virtualenv_bin} -p python3 ${RUN_LOC}
-
-
-  pushd ${RUN_LOC} &> /dev/null
-  source ${RUN_LOC}/bin/activate
-
-  pip install -r requirements.txt
-
-  deactivate
-  popd &> /dev/null
+  # Install to system python
+  ${pip3} install -r requirements.txt
 fi
 
-pushd ${RUN_LOC} &> /dev/null
-source ${RUN_LOC}/bin/activate
+if [[ "${SYS_ONLY}" == "false" ]]; then
+  pushd ${RUN_LOC} &> /dev/null
+  source ${RUN_LOC}/bin/activate
+fi
 
 # Run passing the flags you gave me
 command="${RUN_LOC}/telegram_nagios.py ${python_arg_string}"
 
 eval "${command}"
 
-deactivate
-popd &> /dev/null
+
+if [[ "${SYS_ONLY}" == "false" ]]; then
+  deactivate
+  popd &> /dev/null
+fi
 
 
 
