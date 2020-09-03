@@ -141,8 +141,33 @@ else
 	python_arg_string="${python_arg_string} --output \"${output}\" "
 fi
 
-RUN_LOC="/opt/telegram_nagios"
+# Get Location
+RUN_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+if [[ -x ${RUN_LOC}/bin/activate ]] ; then
+  # We're okay virtualenv is setup
+  true
+else
+  # Setup Virtual Env
+  virtualenv_bin=$(which virtualenv)
+
+  if [[ -z ${virtualenv_bin} ]] ; then
+    # Install pip3 Debian Flavors Only
+    apt-get update &> /dev/null
+    apt-get --assume-yes install python3-virtualenv
+  fi
+
+  ${virtualenv_env} -p python3 ${RUN_LOC}
+
+
+  pushd ${RUN_LOC} &> /dev/null
+  source ${RUN_LOC}/bin/activate
+
+  pip install -r requirements.txt
+
+  deactivate
+  popd &> /dev/null
+fi
 
 pushd ${RUN_LOC} &> /dev/null
 source ${RUN_LOC}/bin/activate
