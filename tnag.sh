@@ -150,18 +150,6 @@ if [[ -x ${RUN_LOC}/bin/activate ]] ; then
   SYS_ONLY="false"
 else
   SYS_ONLY="true"
-  # Setup Virtual Env
-  pip3=$(which pip3)
-
-  if [[ -z ${virtualenv_bin} ]] ; then
-    # Install pip3 Debian Flavors Only
-    apt-get update &> /dev/null
-    apt-get --assume-yes install python3-pip
-    pip3=$(which pip3)
-  fi
-
-  # Install to system python
-  ${pip3} install -r requirements.txt
 fi
 
 if [[ "${SYS_ONLY}" == "false" ]]; then
